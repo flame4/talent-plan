@@ -1,0 +1,3 @@
+[workspace]
+
+members = ["rust/projects/project-1", "rust/building-blocks/bb-1"]
