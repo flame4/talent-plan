@@ -1,5 +1,6 @@
 #![deny(missing_docs)]
 //! a simple example for clap
+//! run cmd like: cargo run --package bb-1 -- -c config.json
 use clap::{App, Arg};
 
 fn main() {

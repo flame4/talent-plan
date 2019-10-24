@@ -12,11 +12,14 @@ fn cli_no_args() {
 // `kvs -V` should print the version
 #[test]
 fn cli_version() {
-    Command::cargo_bin("kvs")
+    let exec_result = Command::cargo_bin("kvs")
         .unwrap()
-        .args(&["-V"])
-        .assert()
-        .stdout(contains(env!("CARGO_PKG_VERSION")));
+        .args(&["-V"]).assert();
+    let exec_result = exec_result.stdout(contains(env!("CARGO_PKG_VERSION")));
+    unsafe {
+        let output = String::from_utf8_unchecked(exec_result.get_output().stdout.to_owned());
+        println!("cli version test pass! output = {}", output);
+    }
 }
 
 // `kvs get <KEY>` should print "unimplemented" to stderr and exit with non-zero code
